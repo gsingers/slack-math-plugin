@@ -34,7 +34,12 @@ app.use('/math', function(req, res) {
                 var scope = JSON.parse(inputs[1].trim());
                 result = math.eval(inputs[0].trim(), scope);
             } else if (inputs.length == 1){
-                result = math.eval(inputs[0]);
+                inputs[0] = inputs[0].trim();
+                if (inputs[0] == "help"){
+                    result = "See http://mathjs.org/docs/expressions/parsing.html";
+                } else {
+                    result = math.eval(inputs[0]);
+                }
             } else{
                 result = "Unknown";
             }
